@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		34447F7C1E06835E00565BFA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34447F7B1E06835E00565BFA /* SettingsViewController.swift */; };
 		344922391E0519F100A014BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344922381E0519F100A014BD /* AppDelegate.swift */; };
 		3449223B1E0519F100A014BD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449223A1E0519F100A014BD /* ViewController.swift */; };
 		3449223E1E0519F100A014BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3449223C1E0519F100A014BD /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		34447F7B1E06835E00565BFA /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		344922351E0519F100A014BD /* tipr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tipr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		344922381E0519F100A014BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3449223A1E0519F100A014BD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 		3449222C1E0519F100A014BD = {
 			isa = PBXGroup;
 			children = (
+				34447F7B1E06835E00565BFA /* SettingsViewController.swift */,
 				344922371E0519F100A014BD /* tipr */,
 				3449224C1E0519F100A014BD /* tiprTests */,
 				344922571E0519F100A014BD /* tiprUITests */,
@@ -261,6 +264,7 @@
 			files = (
 				3449223B1E0519F100A014BD /* ViewController.swift in Sources */,
 				344922391E0519F100A014BD /* AppDelegate.swift in Sources */,
+				34447F7C1E06835E00565BFA /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,6 +509,7 @@
 				3449225F1E0519F100A014BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		344922601E0519F100A014BD /* Build configuration list for PBXNativeTarget "tiprTests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +518,7 @@
 				344922621E0519F100A014BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		344922631E0519F100A014BD /* Build configuration list for PBXNativeTarget "tiprUITests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +527,7 @@
 				344922651E0519F100A014BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

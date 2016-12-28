@@ -14,7 +14,7 @@ class SettingsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         // load from UserDefaults
         let defaults = UserDefaults.standard
-        tipControl.selectedSegmentIndex = defaults.integer(forKey: "segmentIndex")
+        tipControl.selectedSegmentIndex = defaults.integer(forKey: "segmentDefault")
     }
 
     override func viewDidLoad() {
@@ -30,7 +30,7 @@ class SettingsViewController: UIViewController {
     @IBAction func changeDefaultTip(_ sender: AnyObject) {
         // store the new default
         let defaults = UserDefaults.standard
-        defaults.set(tipControl.selectedSegmentIndex, forKey: "segmentIndex")
+        defaults.set(tipControl.selectedSegmentIndex, forKey: "segmentDefault")
     }
 
     

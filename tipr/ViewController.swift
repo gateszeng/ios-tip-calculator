@@ -13,17 +13,49 @@ class ViewController: UIViewController {
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var billField: UITextField!
     @IBOutlet weak var tipControl: UISegmentedControl!
+    let TIMEOUT_INTERVAL: TimeInterval = 60 * 10
+    let defaults = UserDefaults.standard
 
     override func viewWillAppear(_ animated: Bool) {
+        // check for when the app returns from background to foreground
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: .UIApplicationWillEnterForeground, object: nil)
+        // check for when the app goes to background
+        NotificationCenter.default.addObserver(self, selector: #selector(willResignActive), name: .UIApplicationWillResignActive, object: nil)
+        
         // load from UserDefaults
-        let defaults = UserDefaults.standard
-        tipControl.selectedSegmentIndex = defaults.integer(forKey: "segmentIndex")
+        tipControl.selectedSegmentIndex = defaults.integer(forKey: "segmentDefault")
+
+        // makes the initial call to set up previous bill
+        willEnterForeground()
+    }
+    
+    func willEnterForeground() {
+        let previousTime = defaults.object(forKey: "exitTime") as? NSDate
+        
+        // if <10 min, show previous bill
+        billField.text = ""
+        if (previousTime != nil) {
+            let currTime = NSDate()
+            let timeout = currTime.timeIntervalSince(previousTime as! Date)
+            
+            if (timeout <= TIMEOUT_INTERVAL) {
+                billField.text = defaults.string(forKey: "billDefault") ?? ""
+            }
+        }
         calculateTip(self)
+    }
+    
+    func willResignActive() {
+        // set the exit time
+        defaults.set(NSDate(), forKey: "exitTime")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        willResignActive()
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,8 +74,8 @@ class ViewController: UIViewController {
         let totalAmount = billAmount + tipAmount
         
         // store tipPercentage to UserDefaults
-        let defaults = UserDefaults.standard
-        defaults.set(tipControl.selectedSegmentIndex, forKey: "segmentIndex")
+        defaults.set(tipControl.selectedSegmentIndex, forKey: "segmentDefault")
+        defaults.set(billField.text, forKey: "billDefault")
         defaults.synchronize()
         
         tipLabel.text = String(format: "$%.2f", tipAmount)

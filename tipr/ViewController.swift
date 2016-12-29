@@ -42,6 +42,7 @@ class ViewController: UIViewController {
                 billField.text = defaults.string(forKey: "billDefault") ?? ""
             }
         }
+        billField.becomeFirstResponder()
         calculateTip(self)
     }
     
@@ -64,7 +65,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func onTap(_ sender: AnyObject) {
-        view.endEditing(true)
+        // view.endEditing(true)
     }
 
     @IBAction func calculateTip(_ sender: AnyObject) {

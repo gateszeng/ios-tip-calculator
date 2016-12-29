@@ -78,8 +78,11 @@ class ViewController: UIViewController {
         defaults.set(billField.text, forKey: "billDefault")
         defaults.synchronize()
         
-        tipLabel.text = String(format: "$%.2f", tipAmount)
-        totalLabel.text = String(format: "$%.2f", totalAmount)
+        // format the currency into current locale
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        tipLabel.text = formatter.string(from: tipAmount as NSNumber)
+        totalLabel.text = formatter.string(from: totalAmount as NSNumber)
     }
     
     

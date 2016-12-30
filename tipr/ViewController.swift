@@ -9,12 +9,16 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet weak var resultView: UIView!
     @IBOutlet weak var tipLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var billField: UITextField!
     @IBOutlet weak var tipControl: UISegmentedControl!
     let TIMEOUT_INTERVAL: TimeInterval = 60 * 10
+    let TRANSFORM_DISTANCE: CGFloat = 50
+    let ANIMATE_TIME: TimeInterval = 0.2
     let defaults = UserDefaults.standard
+    var resultAlpha: CGFloat = 0
 
     override func viewWillAppear(_ animated: Bool) {
         // check for when the app returns from background to foreground
@@ -42,6 +46,15 @@ class ViewController: UIViewController {
                 billField.text = defaults.string(forKey: "billDefault") ?? ""
             }
         }
+        
+        // set the alpha of the result depending on the elements in the billField
+        if (billField.text == "") {
+            resultAlpha = 0
+        }
+        else {
+            resultAlpha = 1
+        }
+        
         billField.becomeFirstResponder()
         calculateTip(self)
     }
@@ -84,8 +97,32 @@ class ViewController: UIViewController {
         formatter.numberStyle = .currency
         tipLabel.text = formatter.string(from: tipAmount as NSNumber)
         totalLabel.text = formatter.string(from: totalAmount as NSNumber)
+        
+        // animate
+        self.resultView.alpha = resultAlpha
+        // billField is no longer empty
+        if (resultAlpha == 0 && billField.text != "") {
+            resultAlpha = 1;
+            UIView.animate(withDuration: ANIMATE_TIME, animations: {
+                self.resultView.alpha = self.resultAlpha
+            })
+            UIView.animate(withDuration: ANIMATE_TIME, delay: 0.0, options: [], animations: { () -> Void in
+                    self.resultView.transform = CGAffineTransform(translationX: 0, y: -self.TRANSFORM_DISTANCE)
+                    self.billField.transform = CGAffineTransform(translationX: 0, y: -self.TRANSFORM_DISTANCE)
+                }, completion: nil)
+            
+        }
+        // billField no longer contains text
+        else if (resultAlpha == 1 && billField.text == "") {
+            resultAlpha = 0;
+            UIView.animate(withDuration: ANIMATE_TIME, animations: {
+                self.resultView.alpha = self.resultAlpha
+            })
+            UIView.animate(withDuration: ANIMATE_TIME, delay: 0.0, options: [], animations: { () -> Void in
+                    self.resultView.transform = CGAffineTransform(translationX: 0, y: self.TRANSFORM_DISTANCE)
+                    self.billField.transform = CGAffineTransform(translationX: 0, y: self.TRANSFORM_DISTANCE)
+                }, completion: nil)
+        }
     }
-    
-    
 }
 

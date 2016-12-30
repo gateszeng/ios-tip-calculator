@@ -34,8 +34,10 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 ## Notes
 
 Describe any challenges encountered while building the app:
-When building this app, the biggest challenges I encountered was understanding
-Swift's syntax and getting familiar with the Xcode interface.
+Some challenges I encountered while building this app was understanding the swift 
+documentation and getting familiar with the Xcode interface.  I found that the 
+information provided in the official documentation for swift to be lacking and
+unhelpful. 
 
 ## License
 

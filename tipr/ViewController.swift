@@ -107,8 +107,8 @@ class ViewController: UIViewController {
                 self.resultView.alpha = self.resultAlpha
             })
             UIView.animate(withDuration: ANIMATE_TIME, delay: 0.0, options: [], animations: { () -> Void in
-                    self.resultView.transform = CGAffineTransform(translationX: 0, y: -self.TRANSFORM_DISTANCE)
-                    self.billField.transform = CGAffineTransform(translationX: 0, y: -self.TRANSFORM_DISTANCE)
+                    self.resultView.transform = CGAffineTransform(translationX: 0, y: 0)
+                    self.billField.transform = CGAffineTransform(translationX: 0, y: 0)
                 }, completion: nil)
             
         }
